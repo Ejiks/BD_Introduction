@@ -1,0 +1,7 @@
+#в файле расположены только запросы на создание таблиц со связями.
+#команды авторизации и создания ролей/записей исключены
+
+CREATE TABLE if not exists Genre (id_genre serial primary key, genre_name varchar(40) not null);
+CREATE TABLE if not exists Author (id_author serial primary key, nickname varchar(40) not null, id_genre integer references Genre(id_genre));
+CREATE TABLE if not exists Album (id_album serial primary key, album_name varchar(40) not null, release_year integer, id_author integer references Author(id_author));
+CREATE TABLE if not exists Track (id_track serial primary key, track_name varchar(40) not null, duration integer, id_album integer references Album(id_album));
